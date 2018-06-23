@@ -237,9 +237,9 @@
 	</script> 
 		
 	<script type="text/javascript">
-		
-		
 		var remoteHost = "http://app.da-niu.cn";
+		localStorage.setItem('$remoteHost', remoteHost); 
+		
         var pictures = [];  //分享的图片数据数组
         var picNum = 0; //本地图片已经添加到上面数组中的数量，包括下载成功或者失败的
         var picLength = 0; //后台请求获取的图片数组长度
@@ -276,7 +276,7 @@
 			
 console.log("main starting .... ");
         mui.plusReady(function(){
-        	var self = plus.webview.currentWebview();
+        		var self = plus.webview.currentWebview();
 			localStorage.setItem('$mainWindow', self.id);
 			console.log("mainID:" + self.id);
 			
