@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<title>成都大牛一键分享</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			ul {
+				font-size: 14px;
+				color: #8f8f94;
+			}
+			.mui-btn {
+				padding: 10px;
+			}
+			.mui-card-content img{
+				margin: 4px;
+				width: 80px;
+			}
+			.mui-content{
+				top: 45px;
+			}
+		</style>
+		<style type="text/css">
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
+			<h1 class="mui-title">大牛一键分享</h1>
+			<button class=" mui-pull-right mui-btn-link settingNew">设置</button> 
+
+		</header>
+		<div class="mui-content">
+			<!--下拉刷新容器-->
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--数据列表-->
+					<ul class="mui-table-view mui-table-view-chevron">
+						
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/mui.zoom.js"></script>
+		<script src="js/mui.previewimage.js"></script>
+		<script src="js/arttmpl.js"></script>
+		<script type="text/templete" id="article-list"> 
+		
+	<% for(var artKey in articleList){ var article=articleList[artKey]; %>
+		<div class="mui-card">
+			<div class="mui-card-header mui-card-media">
+				<img src="<%=article.header_img%>" />
+				<div class="mui-media-body">
+					<%=article.nickname%>
+					<p>发表于 <%=article.created_at%></p>
+				</div>
+			</div>
+			
+			<div class="mui-card-content" >
+				<p style="color: #333; margin: 8px;" class="mt-article-content"><%=article.content%></p>
+				<% for(var j in article.image){ var image=article.image[j]; %> 
+				<img src="<%=image.url%>" data-preview-src=""   data-preview-group="<%=artKey%>" />
+				<% } %> 
+			</div>
+			
+			<div class="mui-card-footer">
+				<div class="mui-card-link" style="width: 150px;margin: 0px; padding: 0px; line-height: 20px; height: 40px; overflow: hidden; display: inline-block; vertical-align:text-top;"><%=article.remark%> </div>
+				<% if(article.can_delete == 1){ %> <a class="mui-card-link  mt-article-delete" mt-article-id="<%=article.id%>">删 除</a><% } %> 
+				<a class="mui-card-link  mt-article-share" mt-article-id="<%=article.id%>">分 享(<%=article.shared_count%>)</a>
+			</div>
+		</div>
+	<% } %> 
+	</script> 
+		
+	<script type="text/javascript">
+		var self = plus.webview.currentWebview();
+		localStorage.setItem('$mainWindow', self.id);
+		console.log("mainID:" + self.id);
+		
+		var remoteHost = "http://app.da-niu.cn";
+        var pictures = [];  //分享的图片数据数组
+        var picNum = 0; //本地图片已经添加到上面数组中的数量，包括下载成功或者失败的
+        var picLength = 0; //后台请求获取的图片数组长度
+        var relativePathArr = [];   //分享完成后删除下载的本地图片
+        var picBar = ""; // 当前选中的图片模块
+        var sharedArticleId = 0;
+        var wt="";
+        
+        var page = 1;
+    		var pageSize = 10;
+    		var totalPage = 0;
+
+
+		
+		mui.previewImage();
+		
+          //mui.init(); //mui初始化, 前面已经初始化了，所以这里不用再初始化
+          
+        mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					contentrefresh: '正在加载....',
+					style:'circle',
+					offset: "50px",
+					callback: pulldownRefresh
+				},
+				up: {
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh
+				}
+			}
+		});
+			
+console.log("test1");
+        mui.plusReady(function(){
+			getArticleList(); 
+			clickToDelete();
+			clickToShare();
+			clickSetting();
+			
+        });
+        
+        function clickSetting(){
+			$(".settingNew").on("click", function() { 
+				var url_setting = "setting_new.html";
+				console.log("main to setting:" + url_setting);
+		     	mui.openWindow({
+		     		url: url_setting,
+		     		id: "setting_new",
+		     		createNew: true
+	     		});
+		     });
+		}
+		
+		
+        /**
+		 * 下拉刷新具体业务实现 
+		 */
+		function pulldownRefresh() {
+			setTimeout(function() {
+				page = 1;
+				getArticleList("newData");
+				
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				
+				console.log("pull down...");
+			}, 1500);
+		}
+
+		/**
+		 * 上拉加载具体业务实现
+		 */
+		function pullupRefresh() {
+			setTimeout(function() {
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(); //参数为true代表没有更多数据了。
+				var table = document.body.querySelector('.mui-table-view');
+				var cells = document.body.querySelectorAll('.mui-table-view-cell');
+				page++;
+				getArticleList();
+				
+				console.log("pull up...");
+			}, 1500);
+		}
+		
+		
+        function clickToDelete(){
+//	        	$("body").on("click", ".mt-article-delete", function() { 
+//		     	console.log("delete article");
+//		    });
+		    console.log("listen delete article");
+		    mui("#pullrefresh").on('tap','.mt-article-delete',function(){
+			  	console.log("deleting article...");
+			  	
+			  	var articleID = $(this).attr("mt-article-id");
+			  	var container = $(this).parent(0).parent(0);
+			  	var btnArray = ['否', '是'];
+	     	
+				mui.confirm('你正在删除文章，请确认？', '文章管理', btnArray, function(e) {
+					if (e.index == 1) {
+        					var stateUser = app.getState();
+        					
+						mui.post(remoteHost + '/article/delete/' + articleID,{
+								"token": stateUser.token
+							},function(data){
+								//服务器返回响应，根据响应结果，分析是否登录成功；
+								if(data.status == 200){
+									mui.toast('成功');
+									$(container).remove();
+								}else{
+									mui.toast(data.message);
+								}
+								
+								console.log(data.message);
+							},'json'
+						);
+					}
+				});
+			});
+        }
+
+		function clickToShare(){
+			console.log("listen share...");
+			// jQuery监听share的点击事件
+//			$(".mt-article-share").click(function(){
+			mui("#pullrefresh").on('tap','.mt-article-share',function(){
+				//每次点击都先重置变量
+				wt = plus.nativeUI.showWaiting();
+                pictures=[];
+                picNum = 0;
+                picLength = 0;
+                picBar = $(this).parent(0).parent(0);
+                sharedArticleId = $(this).attr("mt-article-id");
+                relativePathArr = [];
+				
+				console.log("click share");
+				
+                //模拟请求接口获取图片数组
+                var imgArrTemp = [
+                    "http://v.ruthout.com/files/course/2017/05-08/133735f9295e681844.jpg",
+                    "http://v.ruthout.com/files/course/2017/05-02/101138a5ce28404936.jpg",
+                    "http://v.ruthout.com/files/course/2017/04-12/180859bee06e205896.jpg",
+                    "http://v.ruthout.com/files/course/2017/04-06/095527f140c2257143.jpg"
+                ];
+                
+                var imgArr = [];
+                var imgList = $(this).parent(0).prev(0).find("img");
+                $(imgList).each(function(){
+                		imgArr.push($(this).attr("src"));
+                });
+
+                picLength = imgArr.length;
+
+                for(var i=0;i<picLength;i++){
+                    setImg("img"+i , imgArr[i]);
+                }
+			});
+		}
+			
+        
+        function getArticleList(appendType){
+        		var albumKey = parseInt(100 * Math.random());
+        		var stateUser = app.getState();
+        		var token = "";
+        		if(typeof(stateUser.token) != "undefined"){
+        			token = stateUser.token;
+        		}
+        		console.log("article list token:" + token);
+        		
+        		// 初始化文章列表，使用mui的ajax请求 
+			mui.post(remoteHost + '/article/list',{
+					"kind_id": 1,
+					"token": token,
+					"page": page,
+					"page_size": pageSize
+				},function(data){
+					//服务器返回响应，根据响应结果，分析是否登录成功；
+					console.log("[/article/list]status:" + data.status);
+					
+					totalPage = data.data.last_page;
+					
+					if(data.status == 200){
+						//利用图灵接口演示聊天布局 
+				        template.config('escape', false);
+				        
+						//追加模板消息 
+				        var str = template('article-list', { 
+				            "articleList": data.data.data,
+				            "albumKey": albumKey
+				        });
+				        if(appendType == "newData"){
+				        		$(".mui-table-view").html(str);
+				        }else{
+				        		$(".mui-table-view").append(str);
+				        }
+				        
+//				        clickToShare();
+//				        clickToDelete();
+					}
+					
+					console.log(data.message);
+				},'json'
+			);
+        }
+        
+        function copyShareContent(copy_content){
+			//复制链接到剪切板
+			
+			//判断是安卓还是ios
+			if(mui.os.ios){
+				//ios
+				var UIPasteboard = plus.ios.importClass("UIPasteboard");
+			    var generalPasteboard = UIPasteboard.generalPasteboard();
+			    //设置/获取文本内容:
+			    generalPasteboard.plusCallMethod({
+			        setValue:copy_content,
+			        forPasteboardType: "public.utf8-plain-text"
+			    });
+			    generalPasteboard.plusCallMethod({
+			        valueForPasteboardType: "public.utf8-plain-text"
+			    });
+			}else{
+				//安卓
+				var context = plus.android.importClass("android.content.Context");
+			  	var main = plus.android.runtimeMainActivity();
+			  	var clip = main.getSystemService(context.CLIPBOARD_SERVICE);
+			  	plus.android.invoke(clip,"setText",copy_content);
+			}
+		}
+        
+
+        /*
+        *1.从本地获取,如果本地存在,则直接设置图片
+        *2.如果本地不存在则网络下载,缓存到本地,再设置图片
+        * */
+        function setImg(imgId, loadUrl) {
+            if (imgId == null || loadUrl == null) return;
+            //图片下载成功 默认保存在本地相对路径的"_downloads"文件夹里面, 如"_downloads/logo.jpg"
+            var filename = loadUrl.substring(loadUrl.lastIndexOf("/") + 1, loadUrl.length);
+            var relativePath = "_downloads/" + filename;
+            relativePathArr.push(relativePath); //存储起来等分享结束后删除数据使用
+
+            //检查图片是否已存在
+            plus.io.resolveLocalFileSystemURL(relativePath, function(entry) {
+                console.log("存在")
+                //如果文件存在,则直接设置本地图片
+                setImgFromLocal(imgId, relativePath);
+            }, function(e) {
+                console.log("下载")
+                //如果文件不存在,联网下载图片
+                setImgFromNet (imgId,loadUrl,relativePath);
+            });
+        }
+
+        /*给图片标签<img>设置本地图片
+         * imgId 图片标签<img>的id
+         * relativePath 本地相对路径 例如:"_downloads/logo.jpg"
+         */
+        function setImgFromLocal(imgId, relativePath) {
+            //本地相对路径("_downloads/logo.jpg")转成SD卡绝对路径("/storage/emulated/0/Android/data/io.dcloud.HBuilder/.HBuilder/downloads/logo.jpg");
+            var sd_path = plus.io.convertLocalFileSystemURL(relativePath);
+            pictures.push("file://"+sd_path);
+            picNum++;
+
+            //这里要注意picNu ++的地方，要在图片下载完成后或者失败后；
+
+            if(picLength == picNum){
+                console.log("开始分享");
+                var content = $(picBar).find(".mt-article-content").html();
+                
+                copyShareContent(content);
+                console.log("content:" + content);
+                //确定全部图片都下载到本地后调分享
+                var msg = {
+                    "pictures": pictures
+//					"href": "http://useradmin.base.ppcdev.tech/",
+//                   "title": content
+                };
+				
+                plus.share.sendWithSystem(msg, function(){
+					wt.close();
+					
+					mui.toast('分享成功！');
+					
+					// 更新文章的分享数据
+					mui.post(remoteHost + '/article/share',{
+							"id"	: sharedArticleId
+					},function(data){
+							console.log("shared:" + data.message);
+						},'json'
+					);
+					
+					console.log("share successful!");
+                    for(var i=0;i<relativePathArr.length;i++){
+                        if (relativePathArr[i]!=null)
+                            delFile(relativePathArr[i]);
+                    }
+                }, function(e){
+                		wt.close();
+					console.log("share error("+e.code+"):" + e.message);
+					
+                    for(var i=0;i<relativePathArr.length;i++){
+                        if (relativePathArr[i]!=null)
+                            delFile(relativePathArr[i]);
+                    }
+                    
+                    mui.toast('['+e.code+'] 分享失败！');
+                });
+            }
+        }
+
+        /*联网下载图片,并设置给<img>*/
+        function setImgFromNet (imgId,loadUrl,relativePath) {
+            //先设置下载中的默认图片
+            //创建下载任务
+            var dtask = plus.downloader.createDownload(loadUrl, {}, function(d, status) {
+                if (status == 200) {
+                    //下载成功
+//                      console.log("下载成功");
+                    setImgFromLocal(imgId, d.filename);
+                } else {
+                    picNum++;
+//                          console.log("下载失败");
+                    //下载失败,需删除本地临时文件,否则下次进来时会检查到图片已存在
+                    //dtask.abort();//文档描述:取消下载,删除临时文件;(但经测试临时文件没有删除,故使用delFile()方法删除);
+                    if (relativePath!=null)
+                        delFile(relativePath);
+                }
+            });
+            //启动下载任务
+            dtask.start();
+        }
+
+        /*删除指定文件*/
+        function delFile(relativePath) {
+            plus.io.resolveLocalFileSystemURL(relativePath, function(entry) {
+            	// TODO: 暂时不删除
+                /*entry.remove(function(entry) {
+                    console.log("文件删除成功");
+                }, function(e) {
+                    console.log("文件删除失败" + relativePath);
+                });*/
+            });
+        }
+
+        /*根据id查找元素*/
+        function $id(id) {
+            return document.getElementById(id);
+        }
+
+    </script>
+
+	
+	<script src="js/mt.message.js"></script>
+	</body>
+
+</html>

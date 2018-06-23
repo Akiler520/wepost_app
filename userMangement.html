@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html> 
+ 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /> 
+        <title>模板页的使用</title> 
+        <script src="js/jquery.min.js"></script> 
+        <script src="js/mui.min.js"></script> 
+        <script src="js/app.js"></script>
+        <link href="css/mui.min.css" rel="stylesheet" /> 
+        <script type="text/javascript" charset="UTF-8"> 
+            mui.init(); 
+        </script> 
+    </head> 
+ 
+    <body> 
+        <header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">用户列表</h1>
+		</header>
+		<div class="mui-content">
+			<h5 class="mui-content-padded" style="margin: 35px 10px 15px 10px;"><a class="user-add"><button class="mui-btn mui-btn-blue" id="user-add" >添加用户</button></a></h5>
+			<h5 class="mui-content-padded" style="margin: 35px 10px 15px 10px;">用户列表(左滑修改/删除用户)</h5>
+			<ul id="user-list" class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red user-edit">修改</a><a class="mui-btn mui-btn-red user-delete">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						左滑删除用户
+					</div>
+				</li>
+			</ul>
+            <!--此处是用来动态追加对应的提干内容--> 
+ 
+        </div> 
+    </body> 
+ 
+</html> 
+
+<script src="js/arttmpl.js"></script> 
+ 
+<!--题干模板--> 
+<script type="text/templete" id="user-list-template"> 
+    <!--使用循环来控制创建的题目个数--> 
+    <% for(var i in userList){ var user=userList[i]; %> 
+        <li class="mui-table-view-cell">
+			<div class="mui-slider-right mui-disabled">
+				<a class="mui-btn mui-btn-red user-edit" user-name="<%=user.username%>" user-id="<%=user.id%>">修改</a><a class="mui-btn mui-btn-red user-delete" user-id="<%=user.id%>">删除</a>
+			</div>
+			<div class="mui-slider-handle">
+				<%=user.username%>
+			</div>
+		</li>
+        <% } %> 
+</script> 
+<script> 
+	var remoteHost = localStorage.getItem('$remoteHost');
+	var state = app.getState();
+    
+    console.log("[user mangement] host:" + remoteHost);
+    console.log("[user mangement] token:" + state.token);
+
+	mui.post(remoteHost + '/user/list',{
+		"token": state.token
+	},function(data){
+			//服务器返回响应，根据响应结果，分析是否登录成功；
+			if(data.status == 200){
+				//利用图灵接口演示聊天布局 
+		        template.config('escape', false); 
+				//追加模板消息 
+		        var str = template('user-list-template', { 
+		            "userList": data.data.data 
+		        }); 
+		        $("#user-list").html(str); 
+		        
+		        clickDelete();
+		        clickEdit();
+		        clickCreate();
+			}
+			
+			console.log(data.message);
+		},'json'
+	);
+	
+	function clickDelete(){
+		$(".user-delete").on("click", function() { 
+	     	var selectedLine = $(this);
+	     	var userID = $(this).attr("user-id");
+	     	
+	     	var btnArray = ['否', '是'];
+	     	
+			mui.confirm('你正在删除用户，确认？', '用户管理', btnArray, function(e) {
+				if (e.index == 1) {
+					mui.post(remoteHost + '/user/delete/'+userID,{
+							"token": state.token
+						},function(data){
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							if(data.status == 200){
+								$(selectedLine).parent().parent().remove();
+								mui.toast('成功');
+							}
+	
+							console.log("delete user:" + data.message);
+						},'json'
+					);
+				}
+			});
+	     	
+	     });
+     
+	}
+	
+	function clickEdit(){
+		$(".user-edit").on("click", function() { 
+	     	var selectedLine = $(this);
+	     	var userID = $(this).attr("user-id");
+	     	var userName = $(this).attr("user-name");
+	     	
+	     	console.log("user manage:"+userID);
+	     	
+	     	mui.openWindow({url:'user_edit.html',extras:{user_id:userID, user_name:userName}});
+	    });
+	}
+	
+	function clickCreate(){
+		$(".user-add").on("click", function() { 
+	     	mui.openWindow({url:'user_add.html'});
+	     });
+	}
+	
+	window.addEventListener('refresh', function(e){//执行刷新
+	  	location.reload(); 
+	 });
+  
+</script>

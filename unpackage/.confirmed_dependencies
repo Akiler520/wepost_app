@@ -1,0 +1,150 @@
+{
+  "user_info.html": {
+    "href": "user_info.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/style.css",
+      "js/jquery.min.js",
+      "js/mui.min.js",
+      "js/app.js",
+      "js/mt.upload.js",
+      "images/iconfont-tianjia.png"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "user_add.html": {
+    "href": "user_add.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/style.css",
+      "js/jquery.min.js",
+      "js/mui.min.js",
+      "js/app.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "user_edit.html": {
+    "href": "user_edit.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/style.css",
+      "js/jquery.min.js",
+      "js/mui.min.js",
+      "js/app.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "userMangement.html": {
+    "href": "userMangement.html",
+    "resources": [
+      "js/arttmpl.js",
+      "js/jquery.min.js",
+      "js/mui.min.js",
+      "js/app.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "user_add.html",
+      "user_edit.html"
+    ],
+    "priority": 0
+  },
+  "article_add.html": {
+    "href": "article_add.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/jquery.min.js",
+      "js/mui.min.js",
+      "js/app.js",
+      "js/mui.zoom.js",
+      "js/mui.previewimage.js",
+      "images/iconfont-tianjia.png"
+    ],
+    "refer": [
+      "main.html"
+    ],
+    "priority": 0
+  },
+  "login.html": {
+    "href": "login.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/style.css",
+      "js/mui.min.js",
+      "js/mui.enterfocus.js",
+      "js/app.js"
+    ],
+    "refer": [
+      "main.html",
+      "unlock.html"
+    ],
+    "priority": 0
+  },
+  "unlock.html": {
+    "href": "unlock.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/mui.locker.js",
+      "js/app.js"
+    ],
+    "refer": [
+      "login.html",
+      "main.html"
+    ],
+    "priority": 0
+  },
+  "login_new.html": {
+    "href": "login_new.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/style.css",
+      "js/mui.min.js",
+      "js/mui.enterfocus.js",
+      "js/app.js"
+    ],
+    "refer": [
+      "main.html",
+      "unlock.html"
+    ],
+    "priority": 0
+  },
+  "setting_new.html": {
+    "href": "setting_new.html",
+    "resources": [
+      "js/jquery.min.js",
+      "js/mui.min.js",
+      "js/mui.view.js",
+      "js/app.js",
+      "js/arttmpl.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "user_info.html",
+      "userMangement.html",
+      "article_add.html",
+      "login_new.html",
+      "main.html"
+    ],
+    "priority": 0
+  },
+  "main.html": {
+    "href": "main.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/jquery.min.js",
+      "js/mui.min.js",
+      "js/app.js",
+      "js/mui.zoom.js",
+      "js/mui.previewimage.js",
+      "js/arttmpl.js"
+    ],
+    "refer": [
+      "setting_new.html"
+    ],
+    "priority": 0
+  }
+}

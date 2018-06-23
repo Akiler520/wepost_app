@@ -1,0 +1,87 @@
+<!DOCTYPE html> 
+<html> 
+ 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /> 
+        <title>模板页的使用</title> 
+        <script src="js/jquery.min.js"></script> 
+        <script src="js/mui.min.js"></script> 
+        <link href="css/mui.min.css" rel="stylesheet" /> 
+        <script type="text/javascript" charset="UTF-8"> 
+            mui.init(); 
+        </script> 
+    </head> 
+ 
+    <body> 
+        <header class="mui-bar mui-bar-nav"> 
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> 
+            <h1 class="mui-title">单选试题</h1> 
+        </header> 
+        <div class="mui-content"> 
+            <!--此处是用来动态追加对应的提干内容--> 
+ 
+        </div> 
+        <div style="text-align: center;margin-top:10px;"> 
+            <button class="mui-btn mui-btn-blue" id="generate" style="width:80%">通过模板生成题目</button> 
+        </div> 
+    </body> 
+ 
+</html> 
+
+<script src="js/arttmpl.js"></script> 
+ 
+<!--题干模板--> 
+<script type="text/templete" id="radio-tigan"> 
+    <!--使用循环来控制创建的题目个数--> 
+    <% for(var i in record){ var item=record[i]; %> 
+        <div class="question"> 
+            <h5 class="mui-content-padded" id="tigan<%=(i+1)%>"><%=item.title%></h5> 
+            <div class="mui-input-group" id="option<%=(i+1)%>"> 
+                <!--此处使用循环来控制每道题目究竟生成多少选项--> 
+                <% for(var j in item.content){ var res=item.content[j]; %> 
+                    <div class="mui-input-row mui-radio mui-left" id="item<%=(j+1)%>"> 
+                        <label id="item-lab<%=(j+1)%>"><%=res.lab%></label> 
+                        <input name="radio<%=(i+1)%>" id="item-rdo<%=(j+1)%>" type="radio"> 
+                    </div> 
+                    <% } %> 
+            </div> 
+        </div> 
+        <% } %> 
+</script> 
+<script> 
+    //相关的处理事件，动态获取时只需要将for循环替换为AJAX的SUCCESS事件中去就好了。 
+    $("#generate").on("click", function() { 
+        //利用图灵接口演示聊天布局 
+        template.config('escape', false); 
+        //定义参数类型 
+        var record = [{ 
+            "title": '题目1', 
+            "content": [{ 
+                "lab": "测试选项11" 
+            }, { 
+                "lab": "测试选项12" 
+            }, { 
+                "lab": "测试选项13" 
+            }, { 
+                "lab": "测试选项14" 
+            }] 
+        }, { 
+            "title": '题目2', 
+            "content": [{ 
+                "lab": "测试选项21" 
+            }, { 
+                "lab": "测试选项22" 
+            }, { 
+                "lab": "测试选项23" 
+            }, { 
+                "lab": "测试选项24" 
+            }] 
+        }]; 
+        //追加模板消息 
+        var str = template('radio-tigan', { 
+            "record": record 
+        }); 
+        $(".mui-content").html(str); 
+    }) 
+</script> 
