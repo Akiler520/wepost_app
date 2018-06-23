@@ -237,9 +237,7 @@
 	</script> 
 		
 	<script type="text/javascript">
-		var self = plus.webview.currentWebview();
-		localStorage.setItem('$mainWindow', self.id);
-		console.log("mainID:" + self.id);
+		
 		
 		var remoteHost = "http://app.da-niu.cn";
         var pictures = [];  //分享的图片数据数组
@@ -267,7 +265,7 @@
 					contentrefresh: '正在加载....',
 					style:'circle',
 					offset: "50px",
-					callback: pulldownRefreshs
+					callback: pulldownRefresh
 				},
 				up: {
 					contentrefresh: '正在加载...',
@@ -276,8 +274,12 @@
 			}
 		});
 			
-console.log("main starting .... ss");
+console.log("main starting .... ");
         mui.plusReady(function(){
+        	var self = plus.webview.currentWebview();
+			localStorage.setItem('$mainWindow', self.id);
+			console.log("mainID:" + self.id);
+			
 			getArticleList(); 
 			clickToDelete();
 			clickToShare();
