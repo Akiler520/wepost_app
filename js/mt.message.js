@@ -62,9 +62,7 @@ mui.plusReady(function(){
 	}, false );
   
 	window.addEventListener("refresh", function (e) {
-		if(!e.detail){
-			location.reload();
-		}
+		location.reload();
 		
 		console.log("refresh detail: "+e.detail);
 	});
