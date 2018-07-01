@@ -26,18 +26,6 @@ function mtGetPushMessage(){
 			console.log("error happened: " + type);
 		}
 	});
-//			
-//			mui.post(remoteHost + '/user/message',{
-//					"token": state.token
-//				},function(data){
-//					//服务器返回响应，根据响应结果，分析是否登录成功；
-//					if(data.status == 200){
-//						// create local push message
-//						
-//					}
-//					console.log("push: "+data.message);
-//				},'json'
-//			);
 }
 
 
