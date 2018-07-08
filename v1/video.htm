@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>视屏列表</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+	<link href="css/base.css" rel="stylesheet"/>
+	<style>
+     .du_pinglun{margin-top: .1rem;}
+     .pinglun_h2 { width: 100%; height: .3rem; text-align: .3rem; text-align: center; font-size: .16rem;}
+     .pinglun_tu { width: .4rem; height: .06rem; margin: auto; display: block; border-radius: .05rem; background-color: #309FEA;}
+     .pinglun_list { margin: .1rem 2%; width: 96%;}
+     .pinglun_list li{ float:left;margin-top: .1rem;width: 100%; display: inline;}
+     .pinglun_list li dt{ float: left; width: 15%; display: inline;}
+     .pinglun_list li dd{ float: left; margin-left: 2%; width: 83%; display: inline; border-bottom: 1px solid #F5F5F5;}
+     .pinglun_list li dt img{ margin: auto; width: .4rem; height: .4rem; border-radius: 50%;}
+     .pinglun_list li dd .pinglun_tou{ display: block; height: .3rem;}
+     .pinglun_tou h3{ display: inline; font-size: .14rem; float: left; width: 50%;}
+     .pinglun_tou div{ float: right; display: inline; width: 50%; height: .3rem;}
+     .pinglun_tou div i{ float: right;color: #E1E7E6; display: inline;height: .3rem; line-height: .3rem; margin-right: .1rem;}
+     .pinglun_tou div em{ float: right;display: inline;height: .3rem;}
+     .pinglun_tou div img{ width: .2rem; height: .23rem;}
+     
+     .pinglun_text { display: block; line-height: .24rem; font-size: .14rem; color: #000000; padding: .05rem 0px;}
+     .pinglun_sj{ display: block; height: .3rem; line-height: .3rem; font-size: .12rem; color: #999999;}
+     .pinglun_sj span:nth-child(2) { margin-left: .15rem; border: 1px solid #B6BCC2; padding: .03rem .1rem; border-radius: .05rem;}
+     .pinglun_hf { width:100%;margin: .05rem 0px;background-color: #F5F5F5;}
+     .pinglun_hf_list{ float: left; display: inline; width: 96%; padding: 0px 2%; line-height: .24rem;background-color: #F5F5F5;}
+     .hf_name { display: inline; font-weight: 700;}
+     .hf_text{ display: inline;}
+     
+     /*遮罩*/
+    .pinglun_zhezhao { z-index: 998; display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;background-color:#000;opacity:0.3;}
+     .huifu_main{ display: none; z-index: 999; position: fixed; bottom: 0px; left: 0px; width: 96%; padding: .1rem 2%; background-color: white;}
+	.huifu_main .huifu_input{ float: left; width: 100%; display: inline;}
+	.huifu_input textarea{ border:0px; background-color: #F7F7F7; border-radius: .05rem; width: 96%; padding: .05rem 2%; min-height: .4rem; line-height: .24rem;}
+	.huifu_tu { float: left;; margin-top: .1rem; display: inline; width: 100%;}
+	.huifu_bl { float: left; width: 50%; height: .4rem; display: inline;}
+	.huifu_tu button { float: right; padding: .05rem .1rem; border: 1px solid #0068D9; color: #0068D9; display: inline;border-radius: .05rem; background-color: white;}
+	</style>
+</head>
+
+<body> 
+<main>
+	<section class="du_pinglun">
+		<h2 class="pinglun_h2">食客有话说</h2>
+		<div class="pinglun_tu"></div>
+		
+        <ul class="pinglun_list">
+        	<li>
+        		<dt><img src="images/tou.jpg"></dt>
+        		<dd>
+        			<div class="pinglun_tou">
+        				<h3>王二姐</h3><div><em><img src="images/zan.png"></em><i>456</i></div>
+        			</div>
+        			<div class="pinglun_text">
+        				全面实现小康，不让一人掉队，不让一个地区掉队。
+        			</div>
+        			<div class="pinglun_sj">
+        				<span>3小时前</span><span onclick="pinglun_add(1)">回复</span>
+        			</div>
+        			<div class="pinglun_hf" id="pinglun_add_1">
+        				
+        				<div class="pinglun_hf_list">
+        					<div class="hf_name">李三</div>
+        					<div class="hf_text">这个不错，欢迎回复</div>
+        				</div>
+        				<div class="pinglun_hf_list">
+        					<div class="hf_name">李三</div>
+        					<div class="hf_text">这个不错，欢迎回复</div>
+        				</div>
+        				
+        				<div class="clear"></div>
+        				
+        			</div>
+        			<div class="clear"></div>
+        		</dd>
+        		<div class="clear"></div>
+        	</li>
+        	
+        	        	<li>
+        		<dt><img src="images/tou.jpg"></dt>
+        		<dd>
+        			<div class="pinglun_tou">
+        				<h3>王二姐</h3><div><em><img src="images/zan.png"></em><i>456</i></div>
+        			</div>
+        			<div class="pinglun_text">
+        				全面实现小康，不让一人掉队，不让一个地区掉队。
+        			</div>
+        			<div class="pinglun_sj">
+        				<span>3小时前</span><span onclick="pinglun_add(2)">回复</span>
+        			</div>
+        			<div class="pinglun_hf" id="pinglun_add_2">
+        				
+        				<div class="pinglun_hf_list">
+        					<div class="hf_name">李三</div>
+        					<div class="hf_text">这个不错，欢迎回复</div>
+        				</div>
+        				<div class="pinglun_hf_list">
+        					<div class="hf_name">李三</div>
+        					<div class="hf_text">这个不错，欢迎回复</div>
+        				</div>
+        				<div class="clear"></div>
+        				
+        			</div>
+        			<div class="clear"></div>
+        		</dd>
+        		<div class="clear"></div>
+        	</li>
+        	
+	    </ul>
+	    
+
+	    <div class="clear"></div>
+	</section>
+</main>
+
+<!--遮罩--开始-->
+<div class="pinglun_zhezhao">
+</div>
+<!--遮罩--结束-->
+
+<!--发表评论--开始-->
+	    <div class="huifu_main">
+	      <div class="huifu_input"><input type="hidden" id="ping_id"><textarea id="huifu_nei"></textarea></div>
+	      <div class="huifu_tu">
+	      	<div class="huifu_bl"></div>
+	      	<button onclick="add_huifu()">发表</button>	      	
+	      </div>
+	    </div>
+<!--发表评论--结束-->	    
+	    
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+function pinglun_add(id)
+{
+
+	//
+	$('#ping_id').val(id);
+	$('.pinglun_zhezhao').show();
+	$('.huifu_main').show();
+	$("#huifu_nei").focus();
+}
+function add_huifu()
+{
+	//发布评论
+	//获取id
+	var id=$('#ping_id').val();
+	//获取评论内容
+	var nei='';
+	nei=$('#huifu_nei').val();
+	//获取原来的信息
+	var yuan=$('#pinglun_add_'+id).html();
+	//ajx保存信息同时返回名称
+	var name='李四';
+	//将新的信息加载到原来的后面
+	var str='';
+	str=yuan+'<div class="pinglun_hf_list">'+
+	         '<div class="hf_name">'+name+'</div>'+
+	         '<div class="hf_text">'+nei+'</div>'+
+	         '</div>';
+	
+	$('.pinglun_zhezhao').hide();
+	$('.huifu_main').hide();
+	$('#pinglun_add_'+id).html(str);
+	
+}
+</script>
+</body>
+</html>

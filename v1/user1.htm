@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户中心</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+	<link href="css/base.css" rel="stylesheet"/>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<style>
+/*头部*/
+header{height:.4rem;line-height:.4rem; width:100%; font-size:.14rem;background-color:#48A9D6;text-align:center;color:#fff; position:relative; text-align:center;}
+#xzlh-back { position:absolute; left:.1rem; top:0rem; width:.4rem; text-align:left; line-height:.4rem; color:#FFFFFF; padding-top:8px;}
+#xzlh-back img { width:75%;}
+
+#xzlh-user { position:absolute; right:.1rem; top:0rem; width:.4rem; text-align:left; line-height:.4rem; color:#FFFFFF; padding-top:8px;}
+#xzlh-user img { width:75%;}
+		
+		
+    .user_center { border-bottom: 1px solid #E8E8E8; display: -webkit-box;display: -ms-flexbox;display: flex;}
+	
+	.user_center .border_l{ border-left:border:1px solid #E8E8E8;}
+	.user_center .border_t{ border-top:border:1px solid #E8E8E8;}
+	.user_center .border_r{ border-right:border:1px solid #E8E8E8;}
+	.user_center .border_b{ border-bottom:border:1px solid #E8E8E8;}
+	
+	.user_center li{text-align:center;height:.8rem; flex:1; line-height: .24rem; padding: .1rem 0px; border-left: 1px solid #E8E8E8;}
+	.user_center li:first-child{ border-left: 0px;}
+	.user_center li img { width:50%; margin: auto;display:block; margin-bottom: 0px;}
+	
+	
+.login_user { position: relative; color: white; font-size:.14rem;width:100%; text-align:center; padding:.4rem 0px;background: url('images/user3.jpg') no-repeat;background-size: 100% 100%;background-position:center center}
+.login_user img { width:.8rem; height:.8rem; 
+/*图片等比例居中---开始*/
+display:block;max-width:100%;margin:auto; 
+/*图片等比例居中---结束*/
+background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
+.pinglun_zhezhao{ position: fixed; top: 30%; left: 25%; width: 50%; height: .2rem; background-color: coral; color: white; text-align: center;
+ font-size: .14rem; padding: .2rem 0px; border-radius: .05rem; z-index: 999;}
+ .qiandao{ position: absolute; right: 0px; top: 30%; width: .4rem; text-align: center; height: .2rem; line-height: .2rem; padding: .07rem 0px; background-color: white; border-radius: 50% 0 0 50%; color: #000000;}
+	</style>
+</head>
+
+<body> 
+<header>
+    <a href="javascript:history.back();" id="xzlh-back"><img src="images/s2.png" /></a>
+    用户中心
+    <a href="#" id="xzlh-user"><img src="images/s1.png" /></a>
+</header>
+<main>
+    <div class="login_user">
+	   <img src="images/tu1.png">
+	   <br>
+	   天下一道
+	   <div class="qiandao">签到</div>
+	</div>
+	
+    <ul class="user_center">
+	  <li class="border_t"><img src="images/tu21.png" />首页</li>
+	  <li class="border_t" id="article-list"><img src="images/tu16.png" />文章管理</li>
+	  <li class="border_t"><img src="images/tu19.png" />我要发布</li>
+	</ul>
+	<ul class="user_center"> 
+	  <li><img src="images/tu6.png" />我要分享</li>
+	  <li><img src="images/tu9.png" />个人资料</li>
+	  <li><img src="images/tu11.png" />客服中心</li>
+	</ul>  
+	<ul class="user_center">
+		<li class="border_t"><img src="images/tu5.png" />用户管理</li>
+	  <li><img src="images/tu10.png" />退出</li>
+	  <li></li>
+	</ul>
+	<div class="clear"></div>
+</main>
+
+
+<script>
+	$('.qiandao').CLICK(function(){
+		
+		$('.pinglun_zhezhao').show();
+	});
+	
+</script>
+</body>
+</html>

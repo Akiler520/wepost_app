@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>订单列表</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+	<link href="css/base.css" rel="stylesheet"/>
+	<style>
+     body{ background-color: #F6F6F6;}
+     .order_list{ width:100%;margin-bottom: .1rem;}
+     .order_list li{ float:left; display:inline;width: 96%; color: #000000; padding: .05rem 2%; margin-top: .05rem; background-color: white; height: 1.3rem;}
+     .order_list li div:first-child{ float: left; text-align: center; display: inline; width: 20%; height: 1.3rem; font-size: .16rem;}
+     .order_list li div:nth-child(2){ float: left; width: 78%; margin-left: 2%; display: inline; height: 1.3rem;}
+     
+     .order_list li div:first-child span{line-height: .3rem; font-size: .22rem; color: #2D99F5; margin-top: .35rem; display: block;}
+     .order_list li div:first-child span i{ display: block; line-height: .2rem; font-size: .14rem;}
+     .order_list li div:first-child p{    line-height: 1.3rem;}
+  
+     
+     .order_b i{ color: #999999;}
+     
+     .order_b dl{ width: 100%; padding:.05rem 0px;border-bottom: 1px solid #F6F6F6; font-size: .14rem;}
+     
+     .order_b dl:nth-child(3){ border-bottom: 0px;}
+
+
+     
+     
+  
+     .order_h dt{ float: left; width: 60%; display: inline; }
+  
+     .order_h dd{ float: left; width: 40%; text-align: center;}
+     
+     
+     .order_h{ height: .4rem;}
+     .order_h i{display: block; font-size: .12rem;}
+     
+     
+     
+     
+     
+     .order_p { height: .3rem;}
+     .order_p dt{min-height: .3rem; line-height: .3rem; float: left; width: 50%; display: inline;}
+     .order_p dd{min-height: .3rem; line-height: .3rem; float: left; width: 50%; display: inline;}
+     .order_p dl i{  font-size: .14rem; }
+     .order_b dl em{ font-size: .14rem; color: #EB333B;}
+     
+     .order_b dl button{ padding: .05rem .1rem; background-color: #EB333B; color: white; border: 0px;border-radius: .05rem;line-height: .2rem;}
+     .order_b dl button:first-child{ background-color: #309FEA; margin-right: .1rem;}
+     
+     
+
+     
+	</style>
+</head>
+
+<body> 
+<main>
+    <ul class="order_list">
+	  <li>
+	  	<div class="order_zhuo">
+	  		<span>3<i>号桌</i></span>
+	  	</div>
+	  	<div class="order_b">
+	  		
+	  		<dl class="order_h">
+	  			<dt>订单号：<i>20181012802109121</i></dt>
+	  			<dd><button>加菜</button><button>结算</button></dd>
+	  		</dl>
+	  		<dl class="order_p">
+	  			<dt>类型：<i>点餐</i></dt>
+	  			<dd>状态：<i>用餐中</i></dd>
+	  		</dl>
+	  		<dl  class="order_p">
+	  			<dt>总价：<em>450</em></dt>
+	  			<dd>时间：<i>07-06 09:32</i></dd>
+	  		</dl>
+	  		
+	  	</div>  	
+	  </li>
+		  <li>
+	  	<div class="order_zhuo">
+	  		<span>4<i>号桌</i></span>
+	  	</div>
+	  	<div class="order_b">
+	  		
+	  		<dl class="order_h">
+	  			<dt>订单号：<i>20181012802109121</i></dt>
+	  			<dd><button>加菜</button><button>结算</button></dd>
+	  		</dl>
+	  		<dl class="order_p">
+	  			<dt>类型：<i>点餐</i></dt>
+	  			<dd>状态：<i>用餐中</i></dd>
+	  		</dl>
+	  		<dl  class="order_p">
+	  			<dt>总价：<em>450</em></dt>
+	  			<dd>时间：<i>07-06 09:32</i></dd>
+	  		</dl>
+	  		
+	  	</div>  	
+	  </li>
+
+	   <li>
+	  	<div class="order_zhuo">
+	  		<p>外卖</p>
+	  	</div>
+	  	<div class="order_b">
+	  		
+	  		<dl class="order_h">
+	  			<dt>订单号：<i>20181012802109121</i></dt>
+	  			<dd><button>加菜</button><button>结算</button></dd>
+	  		</dl>
+	  		<dl class="order_p">
+	  			<dt>类型：<i>外卖</i></dt>
+	  			<dd>状态：<i>用餐中</i></dd>
+	  		</dl>
+	  		<dl  class="order_p">
+	  			<dt>总价：<em>450</em></dt>
+	  			<dd>时间：<i>07-06 09:32</i></dd>
+	  		</dl>
+	  		
+	  	</div>  	
+	  </li>	  
+	  
+	  
+	</ul>
+	<div class="clear"></div>
+</main>
+</body>
+</html>
