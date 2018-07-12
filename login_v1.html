@@ -153,7 +153,8 @@
 				
 						console.log("login host:" + remoteHost);
 						console.log("login:" + loginInfo.username);
-				
+				        alert(remoteHost);
+				        
 						$.post(remoteHost + '/user/login',
 							loginInfo,
 							function(data){

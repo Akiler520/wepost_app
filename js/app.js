@@ -36,6 +36,7 @@
 		state.nickname = loginSuccessInfo.nickname;
 		state.token = loginSuccessInfo.token;
 		state.is_super = loginSuccessInfo.is_super;
+		state.header = loginSuccessInfo.header;
 		
 		owner.setState(state);
 	};

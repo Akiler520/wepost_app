@@ -85,7 +85,8 @@
 			.oauth-area .oauth-btn.disabled {
 				background-color: #ddd;
 			}
-			.imageup{ width:100px; height: 36px; line-height:36px;} 
+			.imageup{ /*width:100px; height: 36px; line-height:36px;*/} 
+			.imageup img{ width: 10%;}
             .button{  width:100px; height: 50px; line-height:50px;} 
             ul li p{
                 display: inline-block;
@@ -95,20 +96,30 @@
             		width: 90px;
             		height: 90px;
             }
+            .tx{ padding-top: 1rem;} 
+            .mui-input{ font-size: .9rem;}
+            .mui-input-row p{ margin-top: .5rem;}
+            .mui-input-row label{ margin-top: .1rem;}
+            .mui-input-row{ border: 0px;}
 		</style>
 
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">修改个人信息</h1>
+		<header class="mui-bar mui-bar-nav" >
+			<button class=" mui-pull-left mui-btn-link mui-action-back setusercenter"><img src="images/s2.png"></button>
+			
+			<h1 class="mui-title">个人资料修改</h1>
+			<button class=" mui-pull-right mui-btn-link settingNew"><img src="images/s1.png"></button> 
+
 		</header>
-		<div class="mui-content">
-			<form id='user-add-form' class="mui-input-group">
+		
+		<div class="mui-content" style=" font-size: .8rem;">
+			<form id='user-add-form' class="mui-input-group" >
 				<div class="mui-input-row">
 					<label>账号</label>
-					<label id="user_name"></label>
+					
+					<p id="user_name"></p>
 				</div>
 				<div class="mui-input-row">
 					<label>昵称</label>
@@ -118,16 +129,22 @@
 					<label>密码</label>
 					<input id='password' type="text" class="mui-input-clear mui-input" placeholder="请输入密码">
 				</div>
-				<div class="mui-input-row" style="height: 250px ;">
+				<div class="mui-input-row tx" style="height: 80px;">
 					<label>头像</label>
 					<div id="article-image-list"></div>
 					<p id="button-select-img"><a  class="imageup 1"><img src="images/iconfont-tianjia.png"></a></p>
 				
 				</div>
 			</form>
+			
+			
+			
+			
+			
+			
 			<div class="mui-content-padded">
 				<button id='user-edit' onclick="upload();" class="mui-btn mui-btn-block mui-btn-primary">修改</button>
-
+			
 				</div>
 			</div>
 			
@@ -136,6 +153,7 @@
 		<script src="js/mui.min.js"></script>
 
 		<script src="js/app.js"></script>
+		<script src="js/daniu.js"></script>
 	</script>
         <script> 
              var remoteHost = localStorage.getItem('$remoteHost');

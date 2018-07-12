@@ -7,39 +7,34 @@
 	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="yes" name="apple-touch-fullscreen" />
-	<link href="v1/css/base.css" rel="stylesheet"/>
+	<link href="css/mui.min.css" rel="stylesheet" />
 	<script src="js/jquery.min.js"></script>
 	<style>
-/*头部*/
-header{height:.4rem;line-height:.4rem; width:100%; font-size:.14rem;background-color:#48A9D6;text-align:center;color:#fff; position:relative; text-align:center;}
-#xzlh-back { position:absolute; left:.1rem; top:0rem; width:.4rem; text-align:left; line-height:.4rem; color:#FFFFFF; padding-top:8px;}
-#xzlh-back img { width:75%;}
 
-#xzlh-user { position:absolute; right:.1rem; top:0rem; width:.4rem; text-align:left; line-height:.4rem; color:#FFFFFF; padding-top:8px;}
-#xzlh-user img { width:75%;}
 		
-		
-    .user_center { border-bottom: 1px solid #E8E8E8; display: -webkit-box;display: -ms-flexbox;display: flex;}
+    .user_center { border-bottom: 1px solid #E8E8E8; display: -webkit-box;display: -ms-flexbox;display: flex; font-size: .8rem; margin: 0px; padding: 0px;}
 	
-	.user_center .border_l{ border-left:border:1px solid #E8E8E8;}
-	.user_center .border_t{ border-top:border:1px solid #E8E8E8;}
-	.user_center .border_r{ border-right:border:1px solid #E8E8E8;}
-	.user_center .border_b{ border-bottom:border:1px solid #E8E8E8;}
 	
-	.user_center li{text-align:center;height:.8rem; flex:1; line-height: .24rem; padding: .1rem 0px; border-left: 1px solid #E8E8E8;}
+	.user_center li{ list-style:none;text-align:center;height:6rem; flex:1; line-height: 1rem; padding: .6rem 0px; border-left: 1px solid #E8E8E8; margin-top: 0px;}
 	.user_center li:first-child{ border-left: 0px;}
 	.user_center li img { width:50%; margin: auto;display:block; margin-bottom: 0px;}
 	
 	
-.login_user { position: relative; color: white; font-size:.14rem;width:100%; text-align:center; padding:.4rem 0px;background: url('v1/images/user3.jpg') no-repeat;background-size: 100% 100%;background-position:center center}
-.login_user img { width:.8rem; height:.8rem; 
+.login_user { margin-top: 44px; position: relative; color: white; font-size:1rem;width:100%; text-align:center; padding:4rem 0px;
+
+background: url('v1/images/user3.jpg') no-repeat;background-size: 100% 100%;background-position:center center;
+/*
+background-color:#EEF9EC;*/
+}
+.login_user img { width:5rem; height:5rem; 
 /*图片等比例居中---开始*/
 display:block;max-width:100%;margin:auto; 
 /*图片等比例居中---结束*/
 background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 .pinglun_zhezhao{ position: fixed; top: 30%; left: 25%; width: 50%; height: .2rem; background-color: coral; color: white; text-align: center;
  font-size: .14rem; padding: .2rem 0px; border-radius: .05rem; z-index: 999;}
- .qiandao{ position: absolute; right: 0px; top: 30%; width: .4rem; text-align: center; height: .2rem; line-height: .2rem; padding: .07rem 0px; background-color: white; border-radius: 50% 0 0 50%; color: #000000;}
+ .qiandao{ position: absolute; right: 0px; top: 30%; width: 3rem; text-align: center; height: 2rem; line-height: 2rem; padding: .2rem 0px; background-color: white; border-radius: 1rem 0 0 1rem; color: #000000;
+ font-size: .8rem;}
 	</style>
 </head>
 
@@ -58,18 +53,26 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 	
 <!--题干模板--> 
 <script type="text/templete" id="setting-template"> 
-    
+		<header class="mui-bar mui-bar-nav" >
+			<button class=" mui-pull-left mui-btn-link mui-action-back setusercenter"><img src="images/s2.png"></button>
+			
+			<h1 class="mui-title">用户中心</h1>
+			<button class=" mui-pull-right mui-btn-link settingNew"><img src="images/s1.png"></button> 
+
+		</header>
 	
 	<div class="login_user">
-	   <img src="v1/images/tu1.png">
+	   <img src="<%=header%>">
 	   <br>
 	   <%=account%>
+	   <% if(isLogin ==1){ %> 
 	   <div class="qiandao">签到</div>
+	   <%}%>
 	</div>
 	
 	<ul class="user_center">
 	  <li class="border_t" id="home-list"><img src="v1/images/tu21.png" />首页</li>
-	  <li class="border_t" id="article-list"><img src="v1/images/tu16.png" />文章管理</li>
+	  <li class="border_t" id="article-list"><img src="v1/images/tu16.png" />信息管理</li>
 	  <li class="border_t" id="article-add"><img src="v1/images/tu19.png" />我要发布</li>
 	</ul>
 	<ul class="user_center"> 
@@ -83,16 +86,21 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 	  <% if(isLogin ==1){ %> 
 	  	<% if(isSuper ==1){ %> 
   		<li class="border_t" id="user-manage"><img src="v1/images/tu5.png" />用户管理</li>
+		
+		<li id="saoyisao"><img src="v1/images/tu4.png" />扫一扫</li>
 		<li id="exit"><img src="v1/images/tu10.png" />退出</li>
-		<li id=""></li>
 		<%}else{%>
+			<li id="saoyisao"><img src="v1/images/tu4.png" />扫一扫</li>
+			
+			<li id="speech"><img src="v1/images/tu20.png" />语音识别</li>
 			<li id="exit"><img src="v1/images/tu10.png" />退出</li>
-			<li id=""></li>
+			
 		<%}%>
 	<%}else{%>
+		
+		<li id="saoyisao"><img src="v1/images/tu4.png" />扫一扫</li>
+		<li id="speech"><img src="v1/images/tu20.png" />语音识别</li>
 		<li id="login_new"><img src="v1/images/tu10.png" />登录</li>
-		<li id=""></li>
-		<li id=""></li>
 	<%}%>
 	</ul>
 	
@@ -123,7 +131,9 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 		clickShare();
 		clickUserInfo();
 		clickService();
+		clicksaoyisao();
 		clickUserManage();
+		clickspeech();
     });
     
 
@@ -133,7 +143,8 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
     var str = template('setting-template', { 
         "isLogin": isLogin,
         "isSuper": isSuper,
-        "account": state.account
+        "account": state.account,
+        "header": state.header
     }); 
     
     $("#settingContainer").html(str); 
@@ -152,20 +163,21 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 	if(isLogin == 1){
 		//退出操作******************
 		document.getElementById('exit').addEventListener('tap', function() {
-			var mainID = localStorage.getItem('$mainWindow');
+			//var mainID = localStorage.getItem('$mainWindow');
 			
 			app.setState({});
 			mui.openWindow({
-				url: 'main.html',
-				id: mainID
+				url: 'login_new.html',
+				id: 'login_new'
 			});
-			
+			/*
 			var main = plus.webview.getWebviewById(mainID);
 			//触发列表界面的自定义事件（refresh）,从而进行数据刷新
 			mui.fire(main,'refresh');
 			
-			return;
 			
+			*/
+			return;
 			if (mui.os.ios) {
 				
 			}
@@ -273,6 +285,15 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 			});
 	     });
 	}
+        function clicksaoyisao(){
+		$("#saoyisao").on("click", function() { 
+			
+			mui.openWindow({
+				"id": "saoyisao",
+				"url": 'plus/barcode.html'
+			});
+	     });
+	}
     
     function clickUserInfo(){
 		$("#user-info").on("click", function() { 
@@ -308,8 +329,51 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 				"url": 'kefu.html'
 			});
 	     });
-	}	
+	}
 	
-	</script>
+	function clickspeech(){
+		$("#speech").on("click", function() { 
+			
+			mui.openWindow({
+				"id": "speech",
+				"url": 'plus/speech.html'
+			});
+	     });
+	}
+	
+	
+	
+	$('.qiandao').click(function(){
+		
+		plus.nativeUI.toast('签到成功');
+	});
+	
+	$(".setusercenter").on("click", function() { 
+		var url_setting = "main.html";
+		console.log("main to setting:" + url_setting);
+     	mui.openWindow({
+     		url: url_setting,
+     		id: "main",
+     		createNew: true
+ 		});
+     });
+
+
+	$(".settingNew").on("click", function() { 
+		var url_setting = "home.html";
+		console.log("main to setting:" + url_setting);
+     	mui.openWindow({
+     		url: url_setting,
+     		id: "home"
+ 		});
+     });
+     
+     mui.plusReady(function(){
+     	window.addEventListener("refresh", function (e) {
+			location.reload();
+		});
+     });
+     
+</script>
 </body>
 </html>

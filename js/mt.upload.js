@@ -167,9 +167,36 @@ function upload(){
         function(t,status){ //上传完成
             if(status==200){
                 console.log("修改成功：" + t.responseText);
+                
+                var data = eval('(' + t.responseText + ')');
+                
+                console.log("修改header：" + data.data.header);
+                
                 mui.toast("修改成功");
                 wt.close(); //关闭等待提示按钮
-                //mui.openWindow({url:'main.html'});
+                
+                var state = app.getState();
+                
+                var headerImage = (typeof(data.data.header) != 'undefined') ? data.data.header : state.header;
+                var loginSuccessInfo = {
+					"account"	: state.account,
+					"token"		: state.token,
+					"user_id"	: state.user_id,
+					"nickname"	: state.nickname,
+					"is_super"	: state.is_super,
+					"header"		: headerImage
+				};
+				
+				app.createStateRemote(loginSuccessInfo);
+				
+                mui.openWindow({
+                		url:'home.html',
+                		id: "home"
+                });
+                
+                var home = plus.webview.getWebviewById("home");
+				//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+				mui.fire(home,'refresh');
             }else{
                 console.log("修改失败："+status);
                 console.log("error message:" + t.responseText);

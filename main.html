@@ -178,14 +178,18 @@
 				max-width: 100%;
 				height: auto;
 			}
+			.settingNew img{width:70%; margin-top:.7rem}
+			.setusercenter img { width: 70%; margin-top:.7rem}
 		</style>
 
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
+		<header class="mui-bar mui-bar-nav" >
+			<button class=" mui-pull-left mui-btn-link mui-action-back setusercenter"><img src="images/s2.png"></button>
+			
 			<h1 class="mui-title">大牛一键分享</h1>
-			<button class=" mui-pull-right mui-btn-link settingNew">设置</button> 
+			<button class=" mui-pull-right mui-btn-link settingNew"><img src="images/s1.png"></button> 
 
 		</header>
 		<div class="mui-content">
@@ -207,8 +211,10 @@
 		<script src="js/app.js"></script>
 		<script src="js/mui.zoom.js"></script>
 		<script src="js/mui.previewimage.js"></script>
+		<script src="js/daniu.js"></script>
 		<script src="js/arttmpl.js"></script>
 		<script type="text/templete" id="article-list"> 
+			
 		
 	<% for(var artKey in articleList){ var article=articleList[artKey]; %>
 		<div class="mui-card">
@@ -283,12 +289,26 @@ console.log("main starting .... ");
 			getArticleList(); 
 			clickToDelete();
 			clickToShare();
-			clickSetting();
-			
+			//clickSetting();
+			//clickSetuser();
         });
-        
-        function clickSetting(){
-			$(".settingNew").on("click", function() { 
+        /*
+        function clickSetuser(){
+			$(".setusercenter").on("click", function() { 
+				var state = app.getState();
+				var isLogin = 0;
+	            if(typeof(state.token) != "undefined")
+	              {
+		            isLogin = 1;
+	              }
+	              if(!isLogin)
+	              {
+	              	mui.openWindow({
+			            url: 'login_new.html',
+			            id: 'login_new'
+		             });
+	              	return;
+	              }
 				var url_setting = "home.html";
 				console.log("main to setting:" + url_setting);
 		     	mui.openWindow({
@@ -298,6 +318,34 @@ console.log("main starting .... ");
 	     		});
 		     });
 		}
+        function clickSetting(){
+			$(".settingNew").on("click", function() { 
+				var state = app.getState();
+				var isLogin = 0;
+	            if(typeof(state.token) != "undefined")
+	              {
+		            isLogin = 1;
+	              }
+	              if(!isLogin)
+	              {
+	              	mui.openWindow({
+			            url: 'login_new.html',
+			            id: 'login_new'
+		             });
+	              	return;
+	              }
+			
+				
+				var url_setting = "home.html";
+				console.log("main to setting:" + url_setting);
+		     	mui.openWindow({
+		     		url: url_setting,
+		     		id: "home",
+		     		createNew: true
+	     		});
+		     });
+		}
+        */
 		
 		
         /**

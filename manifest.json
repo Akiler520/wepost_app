@@ -44,7 +44,9 @@
 		"Webview": {},
 		"NativeUI": {},
 		"Navigator": {},
-		"Push": {}
+		"Push": {},
+		"OAuth": {},
+		"Fingerprint": {}
 	},
 	"plus": {
 		"splashscreen": {
@@ -79,16 +81,16 @@
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
 				"permissions": [
 					"<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
 					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
 					"<uses-permission android:name=\"android.permission.GET_TASKS\"/>",
 					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
 					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
 					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
 					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
 					"<uses-permission  android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
-					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
 					"<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
 					"<uses-permission android:name=\"android.permission.GET_TOP_ACTIVITY_INFO\"/>",
 					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
 					"<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
@@ -106,8 +108,8 @@
 					"<uses-permission android:name=\"android.permission.INTERACT_ACROSS_USERS_FULL\"/>",
 					"<uses-feature android:name=\"android.hardware.camera\"/>",
 					"<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+					"<uses-permission android:name=\"android.permission.USE_FINGERPRINT\"/>",
 					"<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
-					"<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>",
 					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
 					"<uses-permission android:name=\"android.permission.WRITE_SMS\"/>",
 					"<uses-permission android:name=\"android.permission.READ_SMS\"/>"
@@ -207,11 +209,68 @@
 			"rp": false,
 			"splash": false,
 			"push": false
-		},
-		"adid": "123938230606"
+		}
 	},
 	"unpackage": [
-		"README.md"
+		"README.md",
+		"css/app.css",
+		"css/feedback-page.css",
+		"css/feedback.css",
+		"css/icons-extra.css",
+		"css/mui.dtpicker.css",
+		"css/mui.imageviewer.css",
+		"css/mui.indexedlist.css",
+		"css/mui.listpicker.css",
+		"css/mui.picker.all.css",
+		"css/mui.picker.css",
+		"css/mui.picker.min.css",
+		"css/mui.poppicker.css",
+		"images/60x60.gif",
+		"images/cbd.jpg",
+		"images/login-1.png",
+		"images/logo.png",
+		"images/muwu.jpg",
+		"images/qihoo.png",
+		"images/qq.png",
+		"images/qrcode.png",
+		"images/shuijiao.jpg",
+		"images/sinaweibo.png",
+		"images/user-photo.png",
+		"images/weixin.png",
+		"images/yuantiao.jpg",
+		"js/95516.js",
+		"js/beecloud.js",
+		"js/city.data-3.js",
+		"js/city.data.js",
+		"js/feedback-page.js",
+		"js/feedback.js",
+		"js/mt.message.js",
+		"js/mui.dtpicker.js",
+		"js/mui.imageViewer.js",
+		"js/mui.indexedlist.js",
+		"js/mui.js",
+		"js/mui.lazyload.img.js",
+		"js/mui.lazyload.js",
+		"js/mui.listpicker.js",
+		"js/mui.picker.all.js",
+		"js/mui.picker.js",
+		"js/mui.picker.min.js",
+		"js/mui.poppicker.js",
+		"js/mui.pullToRefresh.js",
+		"js/mui.pullToRefresh.material.js",
+		"js/update.js",
+		"js/webviewGroup.js",
+		"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+		"libs/easymob-webim-sdk/jquery-1.11.1.js",
+		"libs/easymob-webim-sdk/json2.js",
+		"libs/easymob-webim-sdk/quickstart.md",
+		"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+		"libs/echarts-all.js",
+		"forget_password.html",
+		"reg.html",
+		"setting.html",
+		"testTemplate.html",
+		"test_refresh.html"
 	],
 	"dependencies": {
 		"pages": {
@@ -227,7 +286,11 @@
 					"js/mt.upload.js",
 					"images/iconfont-tianjia.png"
 				],
-				"priority": 0
+				"priority": 0,
+				"refer": [
+					"main.html",
+					"home.html"
+				]
 			},
 			"user_add.html": {
 				"href": "user_add.html",
@@ -329,7 +392,8 @@
 				],
 				"refer": [
 					"main.html",
-					"unlock.html"
+					"unlock.html",
+					"home.html"
 				],
 				"priority": 3
 			},
@@ -363,10 +427,48 @@
 					"js/app.js",
 					"js/mui.zoom.js",
 					"js/mui.previewimage.js",
-					"js/arttmpl.js"
+					"js/arttmpl.js",
+					"images/logo.png",
+					"js/mt.message.js"
 				],
 				"refer": [
-					"setting_new.html"
+					"setting_new.html",
+					"home.html",
+					"login_new.html"
+				],
+				"priority": 0
+			},
+			"home.html": {
+				"resources": [],
+				"refer": [
+					"login_new.html",
+					"main.html",
+					"article_add.html",
+					"user_info.html",
+					"kefu.html",
+					"barcode.html",
+					"plus/barcode.html",
+					"plus/statistic.html",
+					"plus/speech.html"
+				],
+				"priority": 0
+			},
+			"plus/barcode.html": {
+				"resources": [
+					"/images/s2.png",
+					"/images/s1.png"
+				],
+				"refer": [
+					"plus/barcode_scan.html",
+					"plus/barcode_scan2.html",
+					"home.html"
+				],
+				"priority": 0
+			},
+			"kefu.html": {
+				"resources": [],
+				"refer": [
+					"home.html"
 				],
 				"priority": 0
 			}
@@ -411,12 +513,10 @@
 				"libs/echarts-all.js",
 				"css/icons-extra.css",
 				"js/mui.lazyload.img.js",
-				"images/logo.png",
 				"js/mui.listpicker.js",
 				"images/sinaweibo.png",
 				"js/webviewGroup.js",
 				"libs/easymob-webim-sdk/json2.js",
-				"js/mt.message.js",
 				"libs/easymob-webim-sdk/jquery-1.11.1.js",
 				"css/mui.poppicker.css",
 				"images/login-1.png",
@@ -428,7 +528,6 @@
 				"css/mui.picker.css",
 				"css/mui.indexedlist.css",
 				"js/mui.picker.all.js",
-				"home.html",
 				"images/yuantiao.jpg",
 				"css/app.css",
 				"testTemplate.html",

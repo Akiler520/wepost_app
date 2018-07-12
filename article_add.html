@@ -9,8 +9,9 @@
        <script type="text/javascript" src="js/jquery.min.js" ></script>
         <script type="text/javascript" src="js/mui.min.js" ></script>
         <script src="js/app.js"></script>
+        <script src="js/daniu.js"></script>
         <style> 
-            .imageup{ width:100px; height: 36px; line-height:36px;} 
+            .imageup{ height: 36px; line-height:36px;} 
             .button{  width:100px; height: 50px; line-height:50px;} 
             ul li p{
                 display: inline-block;
@@ -20,13 +21,26 @@
             		width: 90px;
             		height: 90px;
             }
+            #button-select-img{ width: 100%; position: relative;}
+            #button-select-img p{ display: inline; padding: 0px; margin: 0px; position: absolute; left: 15%; top: 0; height: 20px; width: 80%;}
+            .imageup img{ width: 10%; display: inline;}
+            .mui-btn-primary{ width: 10rem; margin: auto; padding: .5rem;}
+            .content,.mui-input{ border: 0px;}
+            .mui-input{ border: 0px;}
+            
         </style> 
     </head> 
     <body> 
-    	<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">添加文章</h1>
+		<header class="mui-bar mui-bar-nav" >
+			<button class=" mui-pull-left mui-btn-link mui-action-back setusercenter"><img src="images/s2.png"></button>
+			
+			<h1 class="mui-title">添加信息</h1>
+			<button class=" mui-pull-right mui-btn-link settingNew"><img src="images/s1.png"></button> 
+
 		</header>
+		
+		
+		
 		<div class="mui-content" style="margin: auto 8px;">
 		<div id="article-add" class="mui-page article-add">
 			
@@ -36,15 +50,16 @@
 					<textarea id='content' cols="20" rows="6" class="mui-input-clear content" placeholder="说点什么吧..."></textarea>
 				</div>
 				<div class="row mui-input-row">
-					<input id='remark' maxlength="20" type="text" class="mui-input-clear mui-input" placeholder="备注...">
+					<input id='remark' maxlength="20" type="text" class="mui-input-clear mui-input" placeholder="备注..." style="border: 0px;">
 				</div>
 				<br>
-				<p id="button-select-img"><a  class="imageup 1"><img src="images/iconfont-tianjia.png"></a></p>
-				<p>图片(选填,可以拍照或从相册选择)</p>
+				<div id="button-select-img"><a  class="imageup 1"><img src="images/iconfont-tianjia.png"><p>图片(选填,可以拍照或从相册选择)</p></a></div>
+				
+				<br/>
 				<div id='article-image-list' class="row image-list">
 				</div>
 				
-				<button id='submit' onclick="upload();" type="button" class="mui-btn mui-btn-green" style="margin: 8px;">提交</button>
+				<button id='submit' onclick="upload();" type="button" class="mui-btn mui-btn-block mui-btn-primary" >发&nbsp&nbsp;布</button>
 				<br>
 			</div>
 
