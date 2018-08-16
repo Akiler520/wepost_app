@@ -39,7 +39,7 @@ function appendByCamera(){
 //                      var indexa = liIndex()
 //                      console.log(indexa);
 //                      $(".headimg")[indexa].src = path; 
-			addNewimageToList(path);
+			compressImage(entry.toLocalURL(),entry.name);
         }, function(e) {
             mui.toast("读取拍照文件错误：" + e.message);
                 });

@@ -118,11 +118,13 @@
                 plus.camera.getCamera().captureImage(function(e){
                     console.log("e is" +  e);
                     plus.io.resolveLocalFileSystemURL(e, function(entry) {
-                        var path = entry.toLocalURL();
+//                      var path = entry.toLocalURL();
 //                      var indexa = liIndex()
 //                      console.log(indexa);
 //                      $(".headimg")[indexa].src = path; 
-						addNewimageToList(path);
+//						addNewimageToList(path);
+
+						compressImage(entry.toLocalURL(),entry.name);  
                     }, function(e) {
                         mui.toast("读取拍照文件错误：" + e.message);
                     });
