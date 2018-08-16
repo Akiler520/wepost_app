@@ -86,21 +86,23 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 	  <% if(isLogin ==1){ %> 
 	  	<% if(isSuper ==1){ %> 
   		<li class="border_t" id="user-manage"><img src="v1/images/tu5.png" />用户管理</li>
-		
-		<li id="saoyisao"><img src="v1/images/tu4.png" />扫一扫</li>
 		<li id="exit"><img src="v1/images/tu10.png" />退出</li>
+		<li></li>
+		
 		<%}else{%>
-			<li id="saoyisao"><img src="v1/images/tu4.png" />扫一扫</li>
-			
-			<li id="speech"><img src="v1/images/tu20.png" />语音识别</li>
 			<li id="exit"><img src="v1/images/tu10.png" />退出</li>
+			
+			
+			<li></li>
+			<li></li>
+			
 			
 		<%}%>
 	<%}else{%>
-		
-		<li id="saoyisao"><img src="v1/images/tu4.png" />扫一扫</li>
-		<li id="speech"><img src="v1/images/tu20.png" />语音识别</li>
 		<li id="login_new"><img src="v1/images/tu10.png" />登录</li>
+		<li></li>
+		<li></li>
+		
 	<%}%>
 	</ul>
 	
@@ -131,9 +133,9 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 		clickShare();
 		clickUserInfo();
 		clickService();
-		clicksaoyisao();
+		//clicksaoyisao();
 		clickUserManage();
-		clickspeech();
+		//clickspeech();
     });
     
 
@@ -285,7 +287,7 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 			});
 	     });
 	}
-        function clicksaoyisao(){
+	/*  function clicksaoyisao(){
 		$("#saoyisao").on("click", function() { 
 			
 			mui.openWindow({
@@ -294,7 +296,7 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 			});
 	     });
 	}
-    
+    */
     function clickUserInfo(){
 		$("#user-info").on("click", function() { 
 			if(!isLogin) {
@@ -330,7 +332,7 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 			});
 	     });
 	}
-	
+	/*
 	function clickspeech(){
 		$("#speech").on("click", function() { 
 			
@@ -340,7 +342,7 @@ background-color:#8DCEC3; border:2px solid #FFFFFF;border-radius:50%;}
 			});
 	     });
 	}
-	
+	*/
 	
 	
 	$('.qiandao').click(function(){

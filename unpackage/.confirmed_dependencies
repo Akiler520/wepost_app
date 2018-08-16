@@ -108,7 +108,8 @@
     ],
     "refer": [
       "main.html",
-      "unlock.html"
+      "unlock.html",
+      "home.html"
     ],
     "priority": 0
   },
@@ -140,11 +141,19 @@
       "js/app.js",
       "js/mui.zoom.js",
       "js/mui.previewimage.js",
-      "js/arttmpl.js"
+      "js/arttmpl.js",
+      "js/mt.message.js"
     ],
     "refer": [
-      "setting_new.html"
+      "setting_new.html",
+      "home.html"
     ],
     "priority": 0
+  },
+  "home.html": {
+    "refer": [
+      "user_info.html",
+      "login_new.html"
+    ]
   }
 }

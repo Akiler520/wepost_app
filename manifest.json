@@ -7,7 +7,7 @@
 	"id": "H5CC04BDC",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "大牛一键分享",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.0.0",/*应用版本名称*/
+		"name": "1.1.6",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "大牛一键分享",/*应用描述信息*/
@@ -72,7 +72,13 @@
 				"password": "q1234",/*iOS应用打包个人证书导入密码*/
 				"p12": "libs/verify/distribution.p12",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
 				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
-				"frameworks": []
+				"frameworks": [],
+				"plistcmds":[
+				    "Set :NSCameraUsageDescription 此APP会在发布文章时访问您的相机进行拍照，是否允许打开相机？",
+				    "Set :NSMicrophoneUsageDescription 此APP会在音频录制时访问您的麦克风，是否允许打开麦克风？",
+				    "Set :NSPhotoLibraryUsageDescription 此APP会在发布文章时访问您的相册，是否允许打开相册？",
+				    "Set :NSLocationWhenInUseUsageDescription 此APP会通过您的地理位置获取周边用户，是否允许打开？"
+				]
 			},
 			"google": {
 				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
@@ -177,13 +183,13 @@
 				"ios": {
 					"iphone": {
 						"default": "", /*iPhone3启动图片选，分辨率：320x480*/
-						"retina35": "/Users/yumin/Downloads/启动图/720x1242 copy.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
-						"retina40": "/Users/yumin/Downloads/启动图/720x1242 copy.png",
-						"iphonex": "/Users/yumin/Downloads/启动图/1080x1882 copy.png",
-						"iphonexl": "/Users/yumin/Downloads/启动图/720x1242 copy.png",
-						"retina47": "/Users/yumin/Downloads/启动图/1080x1882 copy.png",
-						"retina55": "/Users/yumin/Downloads/启动图/1080x1882 copy.png",
-						"retina55l": "/Users/yumin/Downloads/启动图/720x1242 copy.png"
+						"retina35": "/Users/yumin/Documents/daniu/启动图/iOS/640*960.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						"retina40": "/Users/yumin/Documents/daniu/启动图/iOS/640*1136.png",
+						"iphonex": "/Users/yumin/Documents/daniu/启动图/iOS/1080x1882 copy.png",
+						"iphonexl": "/Users/yumin/Documents/daniu/启动图/1080x480.png",
+						"retina47": "/Users/yumin/Documents/daniu/启动图/iOS/750*1334.png",
+						"retina55": "/Users/yumin/Documents/daniu/启动图/iOS/1080x1882 copy.png",
+						"retina55l": "/Users/yumin/Documents/daniu/启动图/1080x480.png"
 					},
 					"ipad": {
 						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
@@ -209,7 +215,7 @@
 			"rp": false,
 			"splash": false,
 			"push": false
-		}
+		},"adid":"123938230606"
 	},
 	"unpackage": [
 		"README.md",
