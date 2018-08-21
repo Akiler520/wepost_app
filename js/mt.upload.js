@@ -171,8 +171,15 @@ function upload(){
                 var data = eval('(' + t.responseText + ')');
                 
                 console.log("修改header：" + data.data.header);
+                console.log("status：" + data.status);
                 
-                mui.toast("修改成功");
+                if(data.status != 200){
+                		mui.toast(data.message);
+                }else{
+                		mui.toast("修改成功");
+                }
+                
+                
                 wt.close(); //关闭等待提示按钮
                 
                 var state = app.getState();
