@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			
+			.mui-input-group {
+				margin-top: 10px;
+			}
+			
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group label {
+				width: 22%;
+			}
+			
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 78%;
+			}
+			
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			
+			.mui-btn {
+				padding: 10px;
+			}
+			
+			.link-area {
+				display: none;
+				margin-top: 25px;
+				text-align: center;
+			}
+			
+			.spliter {
+				color: #bbb;
+				padding: 0px 8px;
+			}
+			
+			.oauth-area {
+				position: absolute;
+				display: none;
+				bottom: 20px;
+				left: 0px;
+				text-align: center;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+			
+			.oauth-area .oauth-btn {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background-size: 30px 30px;
+				background-position: center center;
+				background-repeat: no-repeat;
+				margin: 0px 20px;
+				/*-webkit-filter: grayscale(100%); */
+				border: solid 1px #ddd;
+				border-radius: 25px;
+			}
+			
+			.oauth-area .oauth-btn:active {
+				border: solid 1px #aaa;
+			}
+			
+			.oauth-area .oauth-btn.disabled {
+				background-color: #ddd;
+			}
+			.imageup{ /*width:100px; height: 36px; line-height:36px;*/} 
+			.imageup img{ width: 10%;}
+            .button{  width:100px; height: 50px; line-height:50px;} 
+            ul li p{
+                display: inline-block;
+            }
+            #article-image-list img{
+            		margin: 4px;
+            		width: 90px;
+            		height: 90px;
+            }
+            .tx{ padding-top: 1rem;} 
+            .mui-input{ font-size: .9rem;}
+            .mui-input-row p{ margin-top: .5rem;}
+            .mui-input-row label{ margin-top: .1rem;}
+            .mui-input-row{ border: 0px;}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+			<button class=" mui-pull-left mui-btn-link mui-action-back setusercenter"><img src="images/s2.png"></button>
+			
+			<h1 class="mui-title">用户协议</h1>
+			<button class=" mui-pull-right mui-btn-link settingNew"><img src="images/s1.png"></button> 
+
+		</header>
+		
+		<div class="mui-content" style=" font-size: .8rem;margin: 20px ;">
+			<div>
+				用户不得利用本APP账号或本服务制作、上载、复制、发布、传播干扰“成都大牛一键分享”正常运营，以及侵犯其他用户或第三方合法权益的内容：
+			<br /><br />
+（1）含有任何性或性暗示的；<br />
+（2）好友辱骂、恐吓、威胁内容的；<br />
+（3）含有骚扰、垃圾广告、恶意信息、诱骗信息；<br />
+（4）涉及他人隐私、个人信息或资料的；<br />
+（5）危害他人名誉权、肖像权、知识产权、商业秘密等合法利益等；<br />
+（6）含有其他干扰本服务正常运营和侵犯其他用户或第三方合法权利内容的信息。<br />
+			</div>
+			<div></div>
+			
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/mui.min.js"></script>
+
+		<script src="js/app.js"></script>
+		<script src="js/daniu.js"></script>
+	</script>
+        <script> 
+             var remoteHost = localStorage.getItem('$remoteHost');
+			var state = app.getState();
+			var files = [];
+			var imageCount = 0;
+			var imageRemain = imageNumAllow= 1; 
+			
+			mui.plusReady(function(){
+				var userID = state.user_id;//接收A页面传入的id参数值
+				var userName = state.account;
+				var nickName = state.nickname;
+				
+				$("#user_name").html(userName);
+				$("#nickname").attr("placeholder", nickName);
+			});
+
+</script>
+<script src="js/mt.upload.js"></script>
+	</body>
+
+</html>

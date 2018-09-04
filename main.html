@@ -236,8 +236,9 @@
 			
 			<div class="mui-card-footer">
 				<div class="mui-card-link" style="width: 150px;margin: 0px; padding: 0px; line-height: 20px; height: 40px; overflow: hidden; display: inline-block; vertical-align:text-top;"><%=article.remark%> </div>
-				<% if(article.can_delete == 1){ %> <a class="mui-card-link  mt-article-delete" mt-article-id="<%=article.id%>">删 除</a><% } %> 
-				<a class="mui-card-link  mt-article-share" mt-article-id="<%=article.id%>">分 享(<%=article.shared_count%>)</a>
+				<% if(article.can_delete == 1){ %> <a class="mui-card-link  mt-article-delete" mt-article-id="<%=article.id%>">删除</a><% } %> 
+				<a class="mui-card-link  mt-article-share" mt-article-id="<%=article.id%>">分享(<%=article.shared_count%>)</a>
+				<a class="mui-card-link  mt-article-report" mt-article-id="" href="tel:15982444474">举报</a>
 			</div>
 		</div>
 	<% } %> 
@@ -639,8 +640,6 @@ console.log("main starting .... ");
                 //确定全部图片都下载到本地后调分享
                 var msg = {
                     "pictures": pictures
-//					"href": "http://useradmin.base.ppcdev.tech/",
-//                   "title": content
                 };
 				
                 plus.share.sendWithSystem(msg, function(){
@@ -670,7 +669,7 @@ console.log("main starting .... ");
                             delFile(relativePathArr[i]);
                     }
                     
-                    mui.toast('['+e.code+'] 分享失败！');
+                    mui.toast('分享失败！');
                 });
             }
         }
@@ -704,11 +703,11 @@ console.log("main starting .... ");
         function delFile(relativePath) {
             plus.io.resolveLocalFileSystemURL(relativePath, function(entry) {
             	// TODO: 暂时不删除
-                entry.remove(function(entry) {
-                    console.log("文件删除成功");
-                }, function(e) {
-                    console.log("文件删除失败" + relativePath);
-                });
+//              entry.remove(function(entry) {
+//                  console.log("文件删除成功");
+//              }, function(e) {
+//                  console.log("文件删除失败" + relativePath);
+//              });
             });
         }
 
