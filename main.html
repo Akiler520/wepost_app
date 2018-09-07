@@ -259,6 +259,7 @@
         var page = 1;
     		var pageSize = 10;
     		var totalPage = 0;
+    		var clientInfo = "";
 
 
 		
@@ -284,6 +285,7 @@
 			
 console.log("main starting .... ");
         mui.plusReady(function(){
+        	    clientInfo = plus.push.getClientInfo();
         		var self = plus.webview.currentWebview();
 			localStorage.setItem('$mainWindow', self.id);
 			console.log("mainID:" + self.id);
@@ -297,28 +299,43 @@ console.log("main starting .... ");
 			//clickSetuser();
 			
 			// **** message listener ****
+			var messageEventNew = setInterval("mtGetPushMessage()", 10000);
+			
+			plus.push.addEventListener( "click", function(msg){
+			  	var self = plus.webview.currentWebview();
+				console.log("message mainID:" + self.id);
+				
+				var mainID = localStorage.getItem('$mainWindow');
+			  	var main = plus.webview.getWebviewById(mainID);
+				//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+				mui.fire(main,'refresh');
+				console.log("refresh main");
+				
+				plus.push.clear();
+			}, false );
+			
 			//仅支持竖屏显示
-		    plus.screen.lockOrientation("portrait-primary");
-		
-		    document.addEventListener("newintent", function() {
-		        openWebviewFromOthers();
-		    });
-		
-		    plus.push.addEventListener("click", function(msg) {
-		        console.log("push click");
-		        pushGetRun(msg.payload);
-		    }, false);
-		    plus.push.addEventListener("receive", function(msg) {
-		        //获取透传数据
-		        var data = JSON.parse(msg.payload);
-		        //创建本地消息
-		          plus.push.createMessage(data.content, data.payload, {
-		              title: data.title,
-		              cover: false
-		          });
-		    }, false);
-		    
-		    openWebviewFromOthers();
+//		    plus.screen.lockOrientation("portrait-primary");
+//		
+//		    document.addEventListener("newintent", function() {
+//		        openWebviewFromOthers();
+//		    });
+//		
+//		    plus.push.addEventListener("click", function(msg) {
+//		        console.log("push click");
+//		        pushGetRun(msg.payload);
+//		    }, false);
+//		    plus.push.addEventListener("receive", function(msg) {
+//		        //获取透传数据
+//		        var data = JSON.parse(msg.payload);
+//		        //创建本地消息
+//		          plus.push.createMessage(data.content, data.payload, {
+//		              title: data.title,
+//		              cover: false
+//		          });
+//		    }, false);
+//		    
+//		    openWebviewFromOthers();
         });
         
         function pushGetRun(payload) {
@@ -338,7 +355,7 @@ console.log("main starting .... ");
 		}
         
        function getPushInfo(){
-		    var info = plus.push.getClientInfo();
+		    var info = clientInfo;
 		    console.log( "获取客户端推送标识信息：" );
 		    console.log( "token: "+info.token );
 		    console.log( "clientid: "+info.clientid );
@@ -347,7 +364,6 @@ console.log("main starting .... ");
 		}
        
        function checkClient(){
-       		var info = plus.push.getClientInfo();
        		var stateUser = app.getState();
         		var token = "";
         		if(typeof(stateUser.token) != "undefined"){
@@ -355,11 +371,11 @@ console.log("main starting .... ");
         		}
        		
        		mui.post(remoteHost + '/user/client',{
-					"client_id": info.clientid,
-					"client_token": info.token,
+					"client_id": clientInfo.clientid,
+					"client_token": clientInfo.token,
 					"token": token,
-					"appid": info.appid,
-					"appkey": info.appkey
+					"appid": clientInfo.appid,
+					"appkey": clientInfo.appkey
 				},function(data){
 			
 					if(data.status == 200){
@@ -370,6 +386,43 @@ console.log("main starting .... ");
 				},'json'
 			);
        }
+		       
+		       
+		function sendLocalMsg(message){
+		    plus.push.createMessage("大牛消息:" + message, "LocalMSG", {cover:false});
+		}
+
+       function mtGetPushMessage(){
+			var remoteHost = localStorage.getItem('$remoteHost');
+			var state = app.getState();
+			
+			console.log("push message:"+ remoteHost);
+			
+			mui.ajax(remoteHost + '/user/message',{
+				data:{
+					"token": state.token,
+					"appid": clientInfo.appid
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data){
+					//服务器返回响应，根据响应结果，分析是否登录成功；
+					console.log("push: "+data.message);					
+					console.log("push status: "+data.status);
+
+					if(data.status == 200){
+						console.log("push content: "+data.data.content);
+						sendLocalMsg(data.data.content);
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理； 
+					console.log("error happened: " + type);
+				}
+			});
+		}
 
 		
         /**
